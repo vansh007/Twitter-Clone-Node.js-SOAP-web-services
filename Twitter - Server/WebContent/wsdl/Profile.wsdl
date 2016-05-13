@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://vansh" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://vansh" xmlns:intf="http://vansh" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://vansh" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getProfile">
+    <complexType>
+     <sequence>
+      <element name="uEmail" type="xsd:string"/>
+      <element name="fEmail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProfileResponse">
+    <complexType>
+     <sequence>
+      <element name="getProfileReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFollowers">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFollowersResponse">
+    <complexType>
+     <sequence>
+      <element name="getFollowersReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getFollowersRequest">
+
+      <wsdl:part element="impl:getFollowers" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileResponse">
+
+      <wsdl:part element="impl:getProfileResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileRequest">
+
+      <wsdl:part element="impl:getProfile" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFollowersResponse">
+
+      <wsdl:part element="impl:getFollowersResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Profile">
+
+      <wsdl:operation name="getProfile">
+
+         <wsdl:input message="impl:getProfileRequest" name="getProfileRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getProfileResponse" name="getProfileResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFollowers">
+
+         <wsdl:input message="impl:getFollowersRequest" name="getFollowersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFollowersResponse" name="getFollowersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ProfileSoapBinding" type="impl:Profile">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getProfile">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProfileRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProfileResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFollowers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFollowersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFollowersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ProfileService">
+
+      <wsdl:port binding="impl:ProfileSoapBinding" name="Profile">
+
+         <wsdlsoap:address location="http://localhost:8080/TwitterServer/services/Profile"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

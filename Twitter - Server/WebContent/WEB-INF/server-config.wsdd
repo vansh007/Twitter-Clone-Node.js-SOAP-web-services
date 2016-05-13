@@ -1,0 +1,144 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\Vansh\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TwitterServer\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="Tweets" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="getTweets" qname="ns1:getTweets" returnQName="ns1:getTweetsReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:email" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="postTweet" qname="ns2:postTweet" returnQName="ns2:postTweetReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:email" type="xsd:string"/>
+   <ns1:parameter qname="ns2:desc" type="xsd:string"/>
+   <ns1:parameter qname="ns2:firstName" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="postTweet getTweets"/>
+  <ns1:parameter name="wsdlPortType" value="Tweets"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://vansh"/>
+  <ns1:parameter name="wsdlServicePort" value="Tweets"/>
+  <ns1:parameter name="className" value="vansh.Tweets"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://vansh"/>
+  <ns1:parameter name="wsdlServiceElement" value="TweetsService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="Find" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getUsers" qname="ns3:getUsers" returnQName="ns3:getUsersReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:searchTerm" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getUsers"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Find"/>
+  <ns1:parameter name="className" value="vansh.Find"/>
+  <ns1:parameter name="wsdlServicePort" value="Find"/>
+  <ns1:parameter name="schemaQualified" value="http://vansh"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://vansh"/>
+  <ns1:parameter name="wsdlServiceElement" value="FindService"/>
+ </ns1:service>
+ <ns1:service name="Login" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="signup" qname="ns4:signup" returnQName="ns4:signupReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:email" type="xsd:string"/>
+   <ns1:parameter qname="ns4:firstname" type="xsd:string"/>
+   <ns1:parameter qname="ns4:lastname" type="xsd:string"/>
+   <ns1:parameter qname="ns4:password" type="xsd:string"/>
+   <ns1:parameter qname="ns4:gender" type="xsd:string"/>
+   <ns1:parameter qname="ns4:dob" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="loginCheck" qname="ns5:loginCheck" returnQName="ns5:loginCheckReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:email" type="xsd:string"/>
+   <ns1:parameter qname="ns5:password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="loginCheck signup"/>
+  <ns1:parameter name="wsdlPortType" value="Login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://vansh"/>
+  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="className" value="vansh.Login"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://vansh"/>
+  <ns1:parameter name="wsdlServiceElement" value="LoginService"/>
+ </ns1:service>
+ <ns1:service name="Followers" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="follow" qname="ns6:follow" returnQName="ns6:followReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:uEmail" type="xsd:string"/>
+   <ns1:parameter qname="ns6:fEmail" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getFollowing" qname="ns7:getFollowing" returnQName="ns7:getFollowingReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:email" type="xsd:string"/>
+   <ns1:parameter qname="ns7:status" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getFollowers" qname="ns8:getFollowers" returnQName="ns8:getFollowersReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:email" type="xsd:string"/>
+   <ns1:parameter qname="ns8:status" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getFollowers follow getFollowing"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Followers"/>
+  <ns1:parameter name="className" value="vansh.Followers"/>
+  <ns1:parameter name="wsdlServicePort" value="Followers"/>
+  <ns1:parameter name="schemaQualified" value="http://vansh"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://vansh"/>
+  <ns1:parameter name="wsdlServiceElement" value="FollowersService"/>
+ </ns1:service>
+ <ns1:service name="Profile" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getProfile" qname="ns9:getProfile" returnQName="ns9:getProfileReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:uEmail" type="xsd:string"/>
+   <ns1:parameter qname="ns9:fEmail" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getFollowers" qname="ns10:getFollowers" returnQName="ns10:getFollowersReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://vansh" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:email" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getProfile getFollowers"/>
+  <ns1:parameter name="wsdlPortType" value="Profile"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://vansh"/>
+  <ns1:parameter name="wsdlServicePort" value="Profile"/>
+  <ns1:parameter name="className" value="vansh.Profile"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://vansh"/>
+  <ns1:parameter name="wsdlServiceElement" value="ProfileService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

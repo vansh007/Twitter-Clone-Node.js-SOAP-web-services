@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://vansh" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://vansh" xmlns:intf="http://vansh" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://vansh" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getTweets">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTweetsResponse">
+    <complexType>
+     <sequence>
+      <element name="getTweetsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="postTweet">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="desc" type="xsd:string"/>
+      <element name="firstName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="postTweetResponse">
+    <complexType>
+     <sequence>
+      <element name="postTweetReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="postTweetRequest">
+
+      <wsdl:part element="impl:postTweet" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postTweetResponse">
+
+      <wsdl:part element="impl:postTweetResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTweetsResponse">
+
+      <wsdl:part element="impl:getTweetsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTweetsRequest">
+
+      <wsdl:part element="impl:getTweets" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Tweets">
+
+      <wsdl:operation name="getTweets">
+
+         <wsdl:input message="impl:getTweetsRequest" name="getTweetsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTweetsResponse" name="getTweetsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postTweet">
+
+         <wsdl:input message="impl:postTweetRequest" name="postTweetRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:postTweetResponse" name="postTweetResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TweetsSoapBinding" type="impl:Tweets">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getTweets">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTweetsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTweetsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postTweet">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="postTweetRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="postTweetResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TweetsService">
+
+      <wsdl:port binding="impl:TweetsSoapBinding" name="Tweets">
+
+         <wsdlsoap:address location="http://localhost:8080/TwitterServer/services/Tweets"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
