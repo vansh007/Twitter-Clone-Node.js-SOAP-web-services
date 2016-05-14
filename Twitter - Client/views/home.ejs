@@ -342,6 +342,7 @@ a.navigate {
   				$scope.details1 = data.slice(0);
   	})
 
+//Logout and clearing session
 	  		$scope.logout = function(){
   		
   			console.log("Inside logout function");
@@ -353,6 +354,7 @@ a.navigate {
   			
   		}
   		
+ //Searching a user
   			$scope.searchUser = function(){
   		
   			var searchUser = "";
@@ -377,7 +379,7 @@ a.navigate {
   			
   		}
   	
-  	<!--follow user-->
+ // Following a user.
   		
   		$scope.followUser = function(){
   				
@@ -393,6 +395,8 @@ a.navigate {
   			})
   						
   		}
+
+  // Posting a feed on the wall
 
   		$scope.postFeed = function(){
   		
@@ -413,6 +417,7 @@ a.navigate {
   }
 
 
+// Retweeting the tweet
 
   		$scope.retweet1 = function(){
   		
