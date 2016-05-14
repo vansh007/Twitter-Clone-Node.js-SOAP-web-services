@@ -305,7 +305,7 @@ a.navigate {
   				
   		})
 
-
+// Getting the Following count of user
 			$http.get("/following_count")
   			.success(function(data) {
   				console.log("Success returned from Overview function");
@@ -313,7 +313,7 @@ a.navigate {
   				
   		})
 
-
+// Getting the Tweets count of user
   			$http.get("/tweet_count")
   			.success(function(data) {
   				console.log("Success returned from Overview function");
@@ -321,18 +321,20 @@ a.navigate {
   				
   		})
 
-
+// Getting all the post related to user on the wall
   			$http.get("/wallPost")
   			.success(function(data) {
   				console.log("Success returned from wallPost function");
   				$scope.feeds = data.slice(0);
   	})
+ // List of following 
 
 		  	$http.get("/getFollowing")
   			.success(function(data) {
   				console.log("Success returned from wallPost function");
   				$scope.details = data.slice(0);
   	})
+ // List of followers
 
 		  	$http.get("/getFollowers")
   			.success(function(data) {
