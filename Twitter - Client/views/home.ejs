@@ -284,7 +284,7 @@ a.navigate {
   		$scope.followUs = false;
   		
 
-
+// All the user's Overview
   		
 		$http.get("/overview")
   			.success(function(data) {
@@ -297,6 +297,7 @@ a.navigate {
           		$scope.username123 = data[0].user_name;
   		})
 
+// Getting the Follower count of user
   			$http.get("/follower_count")
   			.success(function(data) {
   				console.log("Success returned from Overview function");
